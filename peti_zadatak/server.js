@@ -83,6 +83,45 @@ http.createServer(function(req, res) {
                 </html>
             `)
         }
+        if (urlObj.pathname == "/dodaj-artikal"){
+            res.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Dodaj Artikal</title>
+                </head>
+                <body>
+                    <h3>Dodaj Artikal</h3>
+                    <br><br>
+                    <form action='/dodaj-artikal' method='POST'>
+                        ID: <input type='number' name='id'><br><br>
+                        NAZIV: <input type='text' name='naziv'><br><br>
+                        CENA: <input type='number' name='cena'><br><br>
+                        IME KOMPANIJE: <input type='text' name='imeKompanije'><br><br>
+                        <button type='submit'>DODAJ Artikal</button>
+                    </form>
+                </body>
+                </html>
+            `);
+        }
+    }
+    else if(req.method == "POST") {
+        if (urlObj.pathname == "/dodaj-artikal"){
+            var body = '';
+                req.on('data', function (data) {
+                body += data;
+            });
+            req.on('end', function () {
+                dodajArtikal(querystring.parse(body).id,querystring.parse(body).naziv,
+                           querystring.parse(body).cena,querystring.parse(body).imeKompanije);
+                res.writeHead(302, {
+                    'Location': '/svi-artikli'
+                });
+                res.end();
+            });
+        }
     }
 }).listen(4000);
 
@@ -100,4 +139,14 @@ function sviArtikli(imeKompanije) {
     }
 
     return response
+}
+
+function dodajArtikal(id, naziv, cena, imeKompanije) {
+    artikal = {
+        "id":id,
+        "naziv": naziv,
+        "cena": cena,
+        "imeKompanije": imeKompanije
+    }
+    artikli.push(artikal)
 }
