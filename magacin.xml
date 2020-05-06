@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Magacin>
+    <Atikal>
+        <Naziv sifra="1">Coca-Cola</Naziv>
+        <DatumIzrade>
+            <Dan>31</Dan>
+            <Mesec>1</Mesec>
+            <Godina>2020</Godina>
+        </DatumIzrade>
+        <Cena tip="dinar">100</Cena>
+        <KompanijaProdavca>
+            <ImeKompanije>Coca-Cola</ImeKompanije>
+            <Adresa>Ulica 123, Beograd</Adresa>
+        </KompanijaProdavca>
+        <EmailProdavca tip="sluzbeni">pr.rs@cchellenic.com</EmailProdavca>
+    </Atikal>
+</Magacin>
